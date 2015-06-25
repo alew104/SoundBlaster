@@ -1,6 +1,6 @@
 
 public class ArrayStack implements DStack {
-	
+	public static int top = 0;
 	public ArrayStack() {
 		double soundValue[] = new double[10];
 	    // Your constructor code 
@@ -15,7 +15,7 @@ public class ArrayStack implements DStack {
 	@Override
 	public void push(double d) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
