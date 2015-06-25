@@ -1,33 +1,55 @@
+import java.util.EmptyStackException;
 
 public class ArrayStack implements DStack {
-	public static int top = 0;
+	
+	public static int top;
+	public double soundValue[];
+	
 	public ArrayStack() {
-		double soundValue[] = new double[10];
-	    // Your constructor code 
+		soundValue = new double[10];
+		top = -1;
 	  }
 
-	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		if (top != -1){
+			return false;
+		} else{
+			return true;
+		}
 	}
 
-	@Override
 	public void push(double d) {
-		// TODO Auto-generated method stub
-		
+		if (top == soundValue.length){
+			soundValue = doubleCapacity();
+		}
+		top++;
+		soundValue[top] = d;
+	}
+	
+	public double[] doubleCapacity() {
+		double newArray[] = new double [2*soundValue.length];
+		for (int i = 0; i < soundValue.length; i++){
+			newArray[i] = soundValue[i];
+		}
+		soundValue = newArray;
+		return newArray;
 	}
 
-	@Override
 	public double pop() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (top == -1){
+			throw new EmptyStackException();
+		}
+		double popValue = 0.0;
+		popValue = soundValue[top];
+		top--;
+		return popValue;
 	}
 
-	@Override
 	public double peek() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (top == -1){
+			throw new EmptyStackException();
+		}
+		return soundValue[top];
 	}
 
 }
