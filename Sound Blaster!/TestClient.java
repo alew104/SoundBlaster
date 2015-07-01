@@ -6,6 +6,7 @@ public class TestClient {
          addValues(s);
          System.out.println(s.size());
          printAndRemoveValues(s);
+         System.out.println("removed values");
          System.out.println(s.size());
          s.push(2.5);
          s.push(2.2);
@@ -20,7 +21,7 @@ public class TestClient {
 	}
 	
 	public static void addValues (QueueStack s){
-		for (int i = 0; i < 25; i++){
+		for (double i = 0; i < 25; i++){
 			s.push(i);
 			System.out.println("pushing");
 		}
@@ -28,9 +29,11 @@ public class TestClient {
 	
 	public static void printAndRemoveValues (QueueStack s){
 		int sizeCount = 0;
+		System.out.println("printing values");
 		while (!s.isEmpty()){
 			System.out.print(s.pop());
 			sizeCount++;
+			System.out.println(s.isEmpty());
 		}
 		System.out.println("size is " + sizeCount);
 	}
