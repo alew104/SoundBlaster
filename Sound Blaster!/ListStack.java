@@ -1,18 +1,17 @@
 import java.util.EmptyStackException;
 
 public class ListStack implements DStack {
-	public int top;
-	public ListStackNode soundValue;
+	private int top;
+	private ListStackNode topNode;
+	
 	public ListStack() {
-	    // Your constructor code 
-		 soundValue = null;
+		 topNode = null;
 		 top = 0;
 	  }
 
-	@Override
+
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		if (soundValue == null){
+		if (topNode == null){
 			return true;
 		}
 		
@@ -23,71 +22,45 @@ public class ListStack implements DStack {
 		return false;
 	}
 
-	@Override
+
 	public void push(double d) {
-		// TODO Auto-generated method stub
-		if (soundValue == null){
-			soundValue = new ListStackNode(d);
+		if (topNode == null){
+			topNode = new ListStackNode(d);
+			top++;
 		} else {
-			addLast(soundValue, d);
+			ListStackNode tempNode = new ListStackNode(d);
+			tempNode.next = topNode;
+			topNode = tempNode;
+			top++;
 		}
 	}
 
-	public void addLast(ListStackNode full, double d){
-		boolean added = false;
-		while (!added){
-			full = full.next;
-			if (full.next == null){
-				full.next = new ListStackNode(d);
-				top++;
-				added = true;
-			}
-		}
-	}
-	@Override
 	public double pop() {
-		// TODO Auto-generated method stub
+		double returnValue = 0;
 		if (top == 0){
 			throw new EmptyStackException();
-		}
-		return removeLast(soundValue);
-	}
-	
-	public double removeLast(ListStackNode full){
-		boolean removed = false;
-		double returnValue = 0.0;
-		while (!removed){
-			full = full.next;
-			if (full.next.next == null){
-				returnValue = full.next.data;
-				full.next = null;
-				top--;
-				removed = true;
-			}
+		} else {
+			returnValue = topNode.data;
+			topNode = topNode.next;
+			top--;
 		}
 		return returnValue;
 	}
 
-	@Override
 	public double peek() {
-		// TODO Auto-generated method stub
 		if (top == 0){
 			throw new EmptyStackException();
 		}
-		return checkLast(soundValue);
+		return topNode.data;
+	}
+
+	public int size (){
+		if (top == 0 || topNode == null){
+			return 0;
+		}
+		return top;
 	}
 	
-	public double checkLast(ListStackNode full){
-		boolean reachedLast = false;
-		double returnValue = 0.0;
-		while (!reachedLast){
-			full = full.next;
-			if (full.next == null){
-				returnValue = full.data;
-				reachedLast = true;
-			}
-		}
-		return returnValue;
-	}
+	
 
 }

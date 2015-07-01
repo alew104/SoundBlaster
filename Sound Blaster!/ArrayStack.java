@@ -2,8 +2,8 @@ import java.util.EmptyStackException;
 
 public class ArrayStack implements DStack {
 	
-	public static int top;
-	public double soundValue[];
+	private static int top;
+	private double soundValue[];
 	
 	public ArrayStack() {
 		soundValue = new double[10];
@@ -19,7 +19,7 @@ public class ArrayStack implements DStack {
 	}
 
 	public void push(double d) {
-		if (top == soundValue.length){
+		if ((top+1) == soundValue.length){
 			soundValue = doubleCapacity();
 		}
 		top++;
@@ -50,6 +50,13 @@ public class ArrayStack implements DStack {
 			throw new EmptyStackException();
 		}
 		return soundValue[top];
+	}
+	
+	public int size() {
+		if (top == -1){
+			return 0;
+		}
+		return top+1;
 	}
 
 }
