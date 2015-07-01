@@ -43,7 +43,7 @@ public class QueueStack implements DStack {
     public void push(double value) {
         // TODO write your push operation here
     	//queue into main queue
-    	queue.enqueue(value);
+    	queue.enqueue(value); 
     }
 
     /**
@@ -57,12 +57,13 @@ public class QueueStack implements DStack {
         // TODO write your pop operation here
     	//dequeue queue 1 push into queue 2, dequeue last item in queue 1.
     	// make queue 2 into queue 1
-    	double returnValue = 0.0;
-    	while (queue.size() > 1){
-    		tempQueue.enqueue(queue.dequeue());
+    	double returnValue = 0.0; // variable to store return data
+    	while (queue.size() > 1){ //move all data into a tempqueue except for the last value added
+    		tempQueue.enqueue(queue.dequeue()); //move all data into tempqueue to keep order
     	}
     	returnValue = queue.dequeue();
-    	queue = tempQueue;
+    	queue = tempQueue; //update data queue with the removed data
+    	tempQueue = new FIFOQueue(); //clear tempqueue so that it can be used for next pop operation
         return returnValue;
     }
     
